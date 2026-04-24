@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Candidatar-se ao Líder Pronto · Andreia Arruda</title>
+<meta name="description" content="Formulário de candidatura para a próxima turma da mentoria Líder Pronto. Preenchimento rápido, atendimento pessoal em até 24h.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --terracota: #9B4A2E;
+  --terracota-dark: #7A3A24;
+  --terracota-light: #C88A5E;
+  --creme: #F5EDE4;
+  --creme-dark: #EDE2D4;
+  --escuro: #2A2018;
+  --texto: #3A3028;
+  --texto-suave: #5A4838;
+  --mute: #8A7868;
+  --off-white: #FAFAF6;
+  --branco: #FFFFFF;
+  --verde: #5A7848;
+  --erro: #B84040;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--texto);
+  background: var(--off-white);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--escuro);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════════════════ */
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(42, 32, 24, 0.08);
+  background: var(--off-white);
+}
+
+.topbar-inner {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--terracota);
+}
+
+.brand span { color: var(--mute); font-weight: 400; font-style: italic; font-size: 14px; }
+
+.topbar-back {
+  font-size: 13px;
+  color: var(--mute);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.topbar-back:hover { color: var(--terracota); }
+
+.main-content {
+  flex: 1;
+  padding: 40px 24px 80px;
+  max-width: 780px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HEADER DO FORMULÁRIO
+   ═══════════════════════════════════════════════════════════════ */
+.form-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--terracota);
+  margin-bottom: 20px;
+}
+
+.form-header h1 {
+  font-size: clamp(30px, 4.5vw, 42px);
+  color: var(--escuro);
+  margin-bottom: 16px;
+  letter-spacing: -0.3px;
+}
+
+.form-header h1 em {
+  font-style: italic;
+  color: var(--terracota);
+  font-weight: 400;
+}
+
+.form-header p {
+  font-size: 17px;
+  color: var(--texto-suave);
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BARRA DE PROGRESSO
+   ═══════════════════════════════════════════════════════════════ */
+.progress-wrapper {
+  margin-bottom: 40px;
+  padding: 20px 24px;
+  background: var(--branco);
+  border: 1px solid var(--creme-dark);
+  border-radius: 8px;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--mute);
+  margin-bottom: 10px;
+}
+
+.progress-info strong {
+  color: var(--terracota);
+  font-weight: 600;
+}
+
+.progress-bar {
+  height: 6px;
+  background: var(--creme-dark);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--terracota) 0%, var(--terracota-light) 100%);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+  width: 0%;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FORMULÁRIO
+   ═══════════════════════════════════════════════════════════════ */
+.form-container {
+  background: var(--branco);
+  border: 1px solid var(--creme-dark);
+  border-radius: 8px;
+  padding: 40px;
+}
+
+@media (max-width: 640px) {
+  .form-container { padding: 28px 20px; }
+}
+
+.question-group {
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--creme-dark);
+}
+
+.question-group:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 32px;
+}
+
+.question-number {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: var(--terracota);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.question-label {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--escuro);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.question-label .required {
+  color: var(--terracota);
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+.question-hint {
+  font-size: 14px;
+  color: var(--mute);
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   INPUTS
+   ═══════════════════════════════════════════════════════════════ */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  width: 100%;
+  padding: 14px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: var(--texto);
+  background: var(--off-white);
+  border: 1.5px solid var(--creme-dark);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--terracota);
+  background: var(--branco);
+  box-shadow: 0 0 0 3px rgba(155, 74, 46, 0.12);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--mute);
+  opacity: 0.7;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+}
+
+.char-counter {
+  text-align: right;
+  font-size: 12px;
+  color: var(--mute);
+  margin-top: 6px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RADIO + CHECKBOX (estilizados)
+   ═══════════════════════════════════════════════════════════════ */
+.option-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 14px 18px;
+  background: var(--off-white);
+  border: 1.5px solid var(--creme-dark);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.option-item:hover {
+  border-color: var(--terracota-light);
+  background: var(--creme);
+}
+
+.option-item input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.option-item .custom-control {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--creme-dark);
+  margin-right: 14px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  background: var(--branco);
+}
+
+/* Radio = circular */
+.option-item.radio .custom-control {
+  border-radius: 50%;
+}
+
+/* Checkbox = quadrado */
+.option-item.checkbox .custom-control {
+  border-radius: 4px;
+}
+
+.option-item .custom-control::after {
+  content: '';
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.option-item.radio .custom-control::after {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--terracota);
+}
+
+.option-item.checkbox .custom-control::after {
+  width: 12px;
+  height: 12px;
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'><path d='M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z'/></svg>");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.option-item input:checked ~ .custom-control {
+  border-color: var(--terracota);
+}
+
+.option-item.checkbox input:checked ~ .custom-control {
+  background: var(--terracota);
+}
+
+.option-item input:checked ~ .custom-control::after {
+  opacity: 1;
+}
+
+.option-item input:checked ~ .option-label {
+  color: var(--escuro);
+  font-weight: 500;
+}
+
+.option-item:has(input:checked) {
+  border-color: var(--terracota);
+  background: var(--creme);
+}
+
+.option-label {
+  flex: 1;
+  font-size: 15px;
+  color: var(--texto);
+  line-height: 1.5;
+  transition: color 0.2s ease;
+  user-select: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ERRO DE VALIDAÇÃO
+   ═══════════════════════════════════════════════════════════════ */
+.error-message {
+  display: none;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--erro);
+  font-weight: 500;
+}
+
+.question-group.has-error .error-message {
+  display: block;
+}
+
+.question-group.has-error input[type="text"],
+.question-group.has-error input[type="email"],
+.question-group.has-error input[type="tel"],
+.question-group.has-error textarea {
+  border-color: var(--erro);
+  background: #FDF5F5;
+}
+
+.question-group.has-error .option-list {
+  padding: 2px;
+  border: 1.5px solid var(--erro);
+  border-radius: 8px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BOTÕES
+   ═══════════════════════════════════════════════════════════════ */
+.form-footer {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 18px 48px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.3px;
+  text-align: center;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  width: 100%;
+  max-width: 320px;
+}
+
+.btn-primary {
+  background: var(--terracota);
+  color: var(--creme);
+  box-shadow: 0 4px 14px rgba(155, 74, 46, 0.25);
+}
+
+.btn-primary:hover {
+  background: var(--terracota-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(155, 74, 46, 0.32);
+}
+
+.btn-primary:active { transform: translateY(0); }
+
+.btn-primary:disabled {
+  background: var(--mute);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.form-footer-note {
+  font-size: 13px;
+  color: var(--mute);
+  margin-top: 16px;
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TELA DE SUCESSO
+   ═══════════════════════════════════════════════════════════════ */
+.success-screen {
+  display: none;
+  text-align: center;
+  padding: 60px 24px;
+  background: var(--branco);
+  border: 1px solid var(--creme-dark);
+  border-radius: 8px;
+}
+
+.success-screen.active { display: block; }
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+  background: var(--terracota);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--creme);
+}
+
+.success-icon svg { width: 40px; height: 40px; }
+
+.success-screen h2 {
+  font-size: clamp(28px, 4vw, 38px);
+  color: var(--terracota);
+  margin-bottom: 20px;
+}
+
+.success-screen p {
+  font-size: 17px;
+  color: var(--texto-suave);
+  max-width: 520px;
+  margin: 0 auto 16px;
+  line-height: 1.6;
+}
+
+.success-info {
+  margin-top: 32px;
+  padding: 24px;
+  background: var(--creme);
+  border-radius: 8px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.success-info strong {
+  color: var(--terracota);
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER GERAL
+   ═══════════════════════════════════════════════════════════════ */
+footer {
+  padding: 30px 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--mute);
+  border-top: 1px solid var(--creme-dark);
+  background: var(--off-white);
+}
+
+footer .brand-small {
+  color: var(--terracota);
+  font-weight: 600;
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .main-content { padding: 24px 16px 60px; }
+  .form-container { padding: 24px 18px; }
+  .question-label { font-size: 19px; }
+  .option-item { padding: 12px 14px; }
+  .option-label { font-size: 14px; }
+  .btn { padding: 16px 32px; font-size: 15px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">Gente &amp; Gestão <span>· por Andreia Arruda</span></div>
+      <a href="#" class="topbar-back" onclick="history.back(); return false;">← Voltar</a>
+    </div>
+  </div>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="main-content">
+
+    <!-- HEADER -->
+    <div class="form-header" id="formHeader">
+      <span class="eyebrow">Candidatura · Líder Pronto</span>
+      <h1>Vamos conversar sobre a sua <em>liderança</em></h1>
+      <p>Preencha o formulário abaixo e, em até 24 horas, eu mesma entro em contato pelo WhatsApp para uma conversa honesta sobre sua situação.</p>
+    </div>
+
+    <!-- PROGRESSO -->
+    <div class="progress-wrapper" id="progressWrapper">
+      <div class="progress-info">
+        <span>Progresso</span>
+        <span><strong id="progressText">0</strong> de 10 preenchidas</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <!-- FORMULÁRIO -->
+    <form id="leadForm" class="form-container" novalidate>
+
+      <!-- PERGUNTA 1: NOME -->
+      <div class="question-group" data-question="1">
+        <span class="question-number">Pergunta 01</span>
+        <label class="question-label" for="nome">
+          Qual seu nome completo?<span class="required">*</span>
+        </label>
+        <input type="text" id="nome" name="nome" required
+               placeholder="Digite seu nome completo"
+               autocomplete="name">
+        <div class="error-message">Por favor, preencha seu nome completo.</div>
+      </div>
+
+      <!-- PERGUNTA 2: WHATSAPP -->
+      <div class="question-group" data-question="2">
+        <span class="question-number">Pergunta 02</span>
+        <label class="question-label" for="whatsapp">
+          Qual seu WhatsApp com DDD?<span class="required">*</span>
+        </label>
+        <p class="question-hint">Vou entrar em contato por aqui. Pode ser número de trabalho ou pessoal, você escolhe.</p>
+        <input type="tel" id="whatsapp" name="whatsapp" required
+               placeholder="(11) 98765-4321"
+               autocomplete="tel">
+        <div class="error-message">Por favor, informe um WhatsApp válido com DDD.</div>
+      </div>
+
+      <!-- PERGUNTA 3: EMAIL -->
+      <div class="question-group" data-question="3">
+        <span class="question-number">Pergunta 03</span>
+        <label class="question-label" for="email">
+          Qual seu melhor e-mail?<span class="required">*</span>
+        </label>
+        <p class="question-hint">Vou usar como canal alternativo e para enviar materiais complementares.</p>
+        <input type="email" id="email" name="email" required
+               placeholder="seu@email.com"
+               autocomplete="email">
+        <div class="error-message">Por favor, informe um e-mail válido.</div>
+      </div>
+
+      <!-- PERGUNTA 4: SITUAÇÃO -->
+      <div class="question-group" data-question="4">
+        <span class="question-number">Pergunta 04</span>
+        <label class="question-label">
+          Qual sua situação hoje?<span class="required">*</span>
+        </label>
+        <p class="question-hint">Marque a opção que mais se aproxima da sua realidade atual.</p>
+        <div class="option-list">
+          <label class="option-item radio">
+            <input type="radio" name="situacao" value="dono" required>
+            <span class="custom-control"></span>
+            <span class="option-label">Sou dono(a) de empresa e lidero minha equipe diretamente</span>
+          </label>
+          <label class="option-item radio">
+            <input type="radio" name="situacao" value="recem-promovido">
+            <span class="custom-control"></span>
+            <span class="option-label">Sou líder recém-promovido(a) (há menos de 2 anos no cargo)</span>
+          </label>
+          <label class="option-item radio">
+            <input type="radio" name="situacao" value="lider-experiente">
+            <span class="custom-control"></span>
+            <span class="option-label">Sou líder há mais tempo mas sinto que preciso evoluir</span>
+          </label>
+          <label class="option-item radio">
+            <input type="radio" name="situacao" value="rh">
+            <span class="custom-control"></span>
+            <span class="option-label">Trabalho com RH e preciso desenvolver as lideranças da empresa</span>
+          </label>
+          <label class="option-item radio">
+            <input type="radio" name="situacao" value="coordenador">
+            <span class="custom-control"></span>
+            <span class="option-label">Sou coordenador(a) ou supervisor(a) de equipe</span>
+          </label>
+          <label class="option-item radio">
+            <input type="radio" name="situacao" value="outro">
+            <span class="custom-control"></span>
+            <span class="option-label">Outro</span>
+          </label>
+        </div>
+        <div class="error-message">Por favor, selecione uma opção.</div>
+      </div>
+
+      <!-- PERGUNTA 5: TAMANHO EQUIPE -->
+      <div class="question-group" data-question="5">
+        <span class="question-number">Pergunta 05</span>
+        <label class="question-label">
+          Quantas pessoas você lidera diretamente?<span class="required">*</span>
+        </label>
+        <div class="option-list">
+          <label class="option-item radio">
+            <input type="radio" name="tamanho_equipe" value="0" required>
+            <span class="custom-control"></span>
+            <span class="option-label">Ainda não lidero ninguém, mas vou liderar em breve</span>
+          </label>
+          <label class="option-item radio">
+            <input type="radio" name="tamanho_equipe" value="2-5">
+            <span class="custom-control"></span>
+            <span class="option-label">2 a 5 pessoas</span>
+          </label>
+          <label class="option-item radio">
+            <input type="radio" name="tamanho_equipe" value="6-15">
+            <span class="custom-control"></span>
+            <span class="option-label">6 a 15 pessoas</span>
+          </label>
+          <label class="option-item radio">
+            <input type="radio" name="tamanho_equipe" value="16-50">
+            <span class="custom-control"></span>
+            <span class="option-label">16 a 50 pessoas</span>
+          </label>
+          <label class="option-item radio">
+            <input type="radio" name="tamanho_equipe" value="50+">
+            <span class="custom-control"></span>
+            <span class="option-label">Mais de 50 pessoas</span>
+          </label>
+        </div>
+        <div class="error-message">Por favor, selecione uma opção.</div>
+      </div>
+
+      <!-- PERGUNTA 6: DESAFIOS (MÚLTIPLA ESCOLHA) -->
+      <div class="question-group" data-question="6">
+        <span class="question-number">Pergunta 06</span>
+        <label class="question-label">
+          Quais são seus maiores desafios hoje?<span class="required">*</span>
+        </label>
+        <p class="question-hint">Marque todos que se aplicam à sua realidade.</p>
+        <div class="option-list">
+          <label class="option-item checkbox">
+            <input type="checkbox" name="desafios" value="feedback">
+            <span class="custom-control"></span>
+            <span class="option-label">Dar feedback e ter conversas difíceis</span>
+          </label>
+          <label class="option-item checkbox">
+            <input type="checkbox" name="desafios" value="cobranca">
+            <span class="custom-control"></span>
+            <span class="option-label">Cobrar resultados sem perder o vínculo</span>
+          </label>
+          <label class="option-item checkbox">
+            <input type="checkbox" name="desafios" value="delegar">
+            <span class="custom-control"></span>
+            <span class="option-label">Delegar e parar de centralizar tudo</span>
+          </label>
+          <label class="option-item checkbox">
+            <input type="checkbox" name="desafios" value="motivar">
+            <span class="custom-control"></span>
+            <span class="option-label">Motivar e engajar a equipe</span>
+          </label>
+          <label class="option-item checkbox">
+            <input type="checkbox" name="desafios" value="conflitos">
+            <span class="custom-control"></span>
+            <span class="option-label">Lidar com conflitos internos</span>
+          </label>
+          <label class="option-item checkbox">
+            <input type="checkbox" name="desafios" value="autoridade">
+            <span class="custom-control"></span>
+            <span class="option-label">Me posicionar como autoridade</span>
+          </label>
+          <label class="option-item checkbox">
+            <input type="checkbox" name="desafios" value="desenvolver">
+            <span class="custom-control"></span>
+            <span class="option-label">Desenvolver minha equipe</span>
+          </label>
+          <label class="option-item checkbox">
+            <input type="checkbox" name="desafios" value="equipe-dificil">
+            <span class="custom-control"></span>
+            <span class="option-label">Lidar com equipe desmotivada ou tóxica</span>
+          </label>
+          <label class="option-item checkbox">
+            <input type="checkbox" name="desafios" value="demissao">
+            <span class="custom-control"></span>
+            <span class="option-label">Demitir ou advertir com respeito</span>
+          </label>
+          <label class="option-item checkbox">
+            <input type="checkbox" name="desafios" value="outro">
+            <span class="custom-control"></span>
+            <span class="option-label">Outro</span>
+          </label>
+        </div>
+        <div class="error-message">Por favor, selecione ao menos um desafio.</div>
+      </div>
+
+      <!-- PERGUNTA 7: URGÊNCIA -->
+      <div class="question-group" data-question="7">
+        <span class="question-number">Pergunta 07</span>
+        <label class="question-label">
+          Há quanto tempo você sente que precisa resolver essas questões?<span class="required">*</span>
+        </label>
+        <div class="option-list">
+          <label class="option-item radio">
+            <input type="radio" name="urgencia" value="menos-6-meses" required>
+            <span class="custom-control"></span>
+            <span class="option-label">Menos de 6 meses</span>
+          </label>
+          <label class="option-item radio">
+            <input type="radio" name="urgencia" value="6-12-meses">
+            <span class="custom-control"></span>
+            <span class="option-label">Entre 6 meses e 1 ano</span>
+          </label>
+          <label class="option-item radio">
+            <input type="radio" name="urgencia" value="1-2-anos">
+            <span class="custom-control"></span>
+            <span class="option-label">Entre 1 e 2 anos</span>
+          </label>
+          <label class="option-item radio">
+            <input type="radio" name="urgencia" value="mais-2-anos">
+            <span class="custom-control"></span>
+            <span class="option-label">Mais de 2 anos</span>
+          </label>
+        </div>
+        <div class="error-message">Por favor, selecione uma opção.</div>
+      </div>
+
+      <!-- PERGUNTA 8: PORTE DA EMPRESA -->
+      <div class="question-group" data-question="8">
+        <span class="question-number">Pergunta 08</span>
+        <label class="question-label">
+          Qual o porte da empresa onde você atua?<span class="required">*</span>
+        </label>
+        <div class="option-list">
+          <label class="option-item radio">
+            <input type="radio" name="porte_empresa" value="micro" required>
+            <span class="custom-control"></span>
+            <span class="option-label">Microempresa (até 9 funcionários)</span>
+          </label>
+          <label class="option-item radio">
+            <input type="radio" name="porte_empresa" value="pequena">
+            <span class="custom-control"></span>
+            <span class="option-label">Pequena empresa (10 a 49 funcionários)</span>
+          </label>
+          <label class="option-item radio">
+            <input type="radio" name="porte_empresa" value="media">
+            <span class="custom-control"></span>
+            <span class="option-label">Média empresa (50 a 249 funcionários)</span>
+          </label>
+          <label class="option-item radio">
+            <input type="radio" name="porte_empresa" value="grande">
+            <span class="custom-control"></span>
+            <span class="option-label">Grande empresa (250+ funcionários)</span>
+          </label>
+          <label class="option-item radio">
+            <input type="radio" name="porte_empresa" value="autonomo">
+            <span class="custom-control"></span>
+            <span class="option-label">Trabalho por conta própria / freelancer</span>
+          </label>
+        </div>
+        <div class="error-message">Por favor, selecione uma opção.</div>
+      </div>
+
+      <!-- PERGUNTA 9: DISPOSIÇÃO DE INVESTIR -->
+      <div class="question-group" data-question="9">
+        <span class="question-number">Pergunta 09</span>
+        <label class="question-label">
+          Você está aberto(a) a investir em seu desenvolvimento?<span class="required">*</span>
+        </label>
+        <p class="question-hint">Pergunta honesta, pede resposta honesta. Não há opção certa ou errada.</p>
+        <div class="option-list">
+          <label class="option-item radio">
+            <input type="radio" name="investimento" value="pronto" required>
+            <span class="custom-control"></span>
+            <span class="option-label">Sim, estou pronta(o) para investir agora</span>
+          </label>
+          <label class="option-item radio">
+            <input type="radio" name="investimento" value="preciso-valor">
+            <span class="custom-control"></span>
+            <span class="option-label">Sim, mas preciso entender o valor primeiro</span>
+          </label>
+          <label class="option-item radio">
+            <input type="radio" name="investimento" value="depende">
+            <span class="custom-control"></span>
+            <span class="option-label">Depende do que for oferecido</span>
+          </label>
+          <label class="option-item radio">
+            <input type="radio" name="investimento" value="sem-condicao">
+            <span class="custom-control"></span>
+            <span class="option-label">No momento não tenho condições de investir</span>
+          </label>
+        </div>
+        <div class="error-message">Por favor, selecione uma opção.</div>
+      </div>
+
+      <!-- PERGUNTA 10: TEXTO ABERTO -->
+      <div class="question-group" data-question="10">
+        <span class="question-number">Pergunta 10</span>
+        <label class="question-label" for="situacao_dificil">
+          Conta rapidamente: qual a situação mais difícil que você vive hoje como líder?<span class="required">*</span>
+        </label>
+        <p class="question-hint">Esse espaço é para você falar sobre uma dor específica, um caso real. Quanto mais honesto, mais posso te ajudar na nossa conversa.</p>
+        <textarea id="situacao_dificil" name="situacao_dificil" required
+                  placeholder="Escreva aqui sua situação... Pode ser algo recente ou recorrente."
+                  maxlength="800"></textarea>
+        <div class="char-counter"><span id="charCount">0</span> / 800</div>
+        <div class="error-message">Por favor, compartilhe sua situação (mínimo 20 caracteres).</div>
+      </div>
+
+      <!-- BOTÃO DE ENVIO -->
+      <div class="form-footer">
+        <button type="submit" class="btn btn-primary" id="submitBtn">
+          Enviar candidatura
+        </button>
+        <p class="form-footer-note">Seus dados são confidenciais e usados apenas para atendimento pessoal.</p>
+      </div>
+
+    </form>
+
+    <!-- TELA DE SUCESSO -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h2>Candidatura recebida!</h2>
+      <p><strong id="successName"></strong>, recebi sua candidatura e já estou lendo com atenção o que você compartilhou.</p>
+      <p>Em até 24 horas eu mesma entro em contato pelo WhatsApp. Fico ansiosa para nossa conversa.</p>
+
+      <div class="success-info">
+        <p><strong>O que acontece agora:</strong></p>
+        <p style="text-align: left; margin-top: 10px;">
+          1. Vou analisar sua candidatura pessoalmente<br>
+          2. Dentro de 24 horas, envio um áudio pelo WhatsApp<br>
+          3. Marcamos uma conversa de diagnóstico sem compromisso<br>
+          4. Decidimos juntos se o Líder Pronto faz sentido pra você agora
+        </p>
+      </div>
+
+      <p style="margin-top: 32px; font-style: italic; color: var(--terracota);">
+        "Líder bom é líder que escolhe estar aqui."
+      </p>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="brand-small">Gente &amp; Gestão</span>
+    <span>Andreia Arruda · Mentora de Líderes · © 2026</span>
+  </footer>
+
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// CONFIGURAÇÃO SUPABASE
+// ═══════════════════════════════════════════════════════════════
+// Cole aqui as duas informações do seu projeto Supabase.
+// Como encontrar: Dashboard Supabase → Settings → Data API
+//
+// 1. SUPABASE_URL: algo como https://abcdefgh.supabase.co
+// 2. SUPABASE_KEY: a chave publishable (publishable/anon). NÃO use a secret.
+//
+// Nome da tabela: por padrão, o formulário insere em "leads".
+// Você cria essa tabela no passo do guia de configuração.
+
+const SUPABASE_URL = 'https://slzsgtbgyubpjhwqcttr.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNsenNndGJneXVicGpod3FjdHRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwNTAwNjUsImV4cCI6MjA5MjYyNjA2NX0.TpGjL34K1wLAC0F4uXjbaq5A3Qitf_0f191U4bs3wGs';
+const SUPABASE_TABLE = 'leads';
+
+// ═══════════════════════════════════════════════════════════════
+// MÁSCARA DE WHATSAPP (BR)
+// ═══════════════════════════════════════════════════════════════
+const whatsappInput = document.getElementById('whatsapp');
+
+whatsappInput.addEventListener('input', function(e) {
+  let value = e.target.value.replace(/\D/g, '');
+
+  if (value.length > 11) value = value.slice(0, 11);
+
+  if (value.length >= 7) {
+    value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
+  } else if (value.length >= 3) {
+    value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+  } else if (value.length >= 1) {
+    value = `(${value}`;
+  }
+
+  e.target.value = value;
+});
+
+// ═══════════════════════════════════════════════════════════════
+// CONTADOR DE CARACTERES
+// ═══════════════════════════════════════════════════════════════
+const textareaEl = document.getElementById('situacao_dificil');
+const charCountEl = document.getElementById('charCount');
+
+textareaEl.addEventListener('input', function() {
+  charCountEl.textContent = this.value.length;
+});
+
+// ═══════════════════════════════════════════════════════════════
+// BARRA DE PROGRESSO
+// ═══════════════════════════════════════════════════════════════
+const form = document.getElementById('leadForm');
+const progressFill = document.getElementById('progressFill');
+const progressText = document.getElementById('progressText');
+
+function updateProgress() {
+  let completed = 0;
+
+  // Texto/email/tel
+  if (document.getElementById('nome').value.trim()) completed++;
+  if (document.getElementById('whatsapp').value.trim().length >= 14) completed++;
+  if (document.getElementById('email').value.trim() && document.getElementById('email').value.includes('@')) completed++;
+
+  // Radios
+  ['situacao', 'tamanho_equipe', 'urgencia', 'porte_empresa', 'investimento'].forEach(name => {
+    if (document.querySelector(`input[name="${name}"]:checked`)) completed++;
+  });
+
+  // Checkbox (pelo menos 1)
+  if (document.querySelectorAll('input[name="desafios"]:checked').length > 0) completed++;
+
+  // Textarea
+  if (document.getElementById('situacao_dificil').value.trim().length >= 20) completed++;
+
+  const percent = (completed / 10) * 100;
+  progressFill.style.width = percent + '%';
+  progressText.textContent = completed;
+}
+
+form.addEventListener('input', updateProgress);
+form.addEventListener('change', updateProgress);
+
+// ═══════════════════════════════════════════════════════════════
+// VALIDAÇÃO
+// ═══════════════════════════════════════════════════════════════
+function clearErrors() {
+  document.querySelectorAll('.question-group.has-error').forEach(el => {
+    el.classList.remove('has-error');
+  });
+}
+
+function showError(questionNumber) {
+  const group = document.querySelector(`.question-group[data-question="${questionNumber}"]`);
+  if (group) group.classList.add('has-error');
+}
+
+function validateForm() {
+  clearErrors();
+  let isValid = true;
+  let firstErrorGroup = null;
+
+  // 1. Nome
+  const nome = document.getElementById('nome').value.trim();
+  if (nome.length < 3) { showError(1); if (!firstErrorGroup) firstErrorGroup = 1; isValid = false; }
+
+  // 2. WhatsApp
+  const whats = document.getElementById('whatsapp').value.replace(/\D/g, '');
+  if (whats.length < 10 || whats.length > 11) { showError(2); if (!firstErrorGroup) firstErrorGroup = 2; isValid = false; }
+
+  // 3. Email
+  const email = document.getElementById('email').value.trim();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) { showError(3); if (!firstErrorGroup) firstErrorGroup = 3; isValid = false; }
+
+  // 4-5, 7-9 Radios obrigatórios
+  const radioFields = [
+    { name: 'situacao', q: 4 },
+    { name: 'tamanho_equipe', q: 5 },
+    { name: 'urgencia', q: 7 },
+    { name: 'porte_empresa', q: 8 },
+    { name: 'investimento', q: 9 }
+  ];
+
+  radioFields.forEach(f => {
+    if (!document.querySelector(`input[name="${f.name}"]:checked`)) {
+      showError(f.q);
+      if (!firstErrorGroup) firstErrorGroup = f.q;
+      isValid = false;
+    }
+  });
+
+  // 6. Desafios (pelo menos 1)
+  if (document.querySelectorAll('input[name="desafios"]:checked').length === 0) {
+    showError(6);
+    if (!firstErrorGroup) firstErrorGroup = 6;
+    isValid = false;
+  }
+
+  // 10. Situação difícil (mínimo 20 caracteres)
+  const sit = document.getElementById('situacao_dificil').value.trim();
+  if (sit.length < 20) { showError(10); if (!firstErrorGroup) firstErrorGroup = 10; isValid = false; }
+
+  // Scroll para o primeiro erro
+  if (firstErrorGroup) {
+    const errorEl = document.querySelector(`.question-group[data-question="${firstErrorGroup}"]`);
+    if (errorEl) {
+      errorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  return isValid;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// COLETA DE DADOS DO FORMULÁRIO
+// ═══════════════════════════════════════════════════════════════
+function collectFormData() {
+  const data = {
+    nome: document.getElementById('nome').value.trim(),
+    whatsapp: document.getElementById('whatsapp').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    situacao: document.querySelector('input[name="situacao"]:checked')?.value || '',
+    tamanho_equipe: document.querySelector('input[name="tamanho_equipe"]:checked')?.value || '',
+    desafios: Array.from(document.querySelectorAll('input[name="desafios"]:checked')).map(i => i.value),
+    urgencia: document.querySelector('input[name="urgencia"]:checked')?.value || '',
+    porte_empresa: document.querySelector('input[name="porte_empresa"]:checked')?.value || '',
+    investimento: document.querySelector('input[name="investimento"]:checked')?.value || '',
+    situacao_dificil: document.getElementById('situacao_dificil').value.trim(),
+    timestamp: new Date().toISOString(),
+    origem: window.location.href
+  };
+
+  // Labels humanos para facilitar leitura no destino
+  const labels = {
+    situacao: {
+      'dono': 'Dono(a) de empresa',
+      'recem-promovido': 'Líder recém-promovido(a)',
+      'lider-experiente': 'Líder experiente',
+      'rh': 'RH',
+      'coordenador': 'Coordenador(a)/supervisor(a)',
+      'outro': 'Outro'
+    },
+    tamanho_equipe: {
+      '0': 'Não lidero ninguém ainda',
+      '2-5': '2 a 5 pessoas',
+      '6-15': '6 a 15 pessoas',
+      '16-50': '16 a 50 pessoas',
+      '50+': 'Mais de 50 pessoas'
+    },
+    urgencia: {
+      'menos-6-meses': 'Menos de 6 meses',
+      '6-12-meses': '6 meses a 1 ano',
+      '1-2-anos': '1 a 2 anos',
+      'mais-2-anos': 'Mais de 2 anos'
+    },
+    porte_empresa: {
+      'micro': 'Microempresa',
+      'pequena': 'Pequena empresa',
+      'media': 'Média empresa',
+      'grande': 'Grande empresa',
+      'autonomo': 'Autônomo/freelancer'
+    },
+    investimento: {
+      'pronto': 'Pronta(o) para investir agora',
+      'preciso-valor': 'Sim, mas preciso entender o valor',
+      'depende': 'Depende do que for oferecido',
+      'sem-condicao': 'Sem condição no momento'
+    }
+  };
+
+  data.situacao_label = labels.situacao[data.situacao] || data.situacao;
+  data.tamanho_equipe_label = labels.tamanho_equipe[data.tamanho_equipe] || data.tamanho_equipe;
+  data.urgencia_label = labels.urgencia[data.urgencia] || data.urgencia;
+  data.porte_empresa_label = labels.porte_empresa[data.porte_empresa] || data.porte_empresa;
+  data.investimento_label = labels.investimento[data.investimento] || data.investimento;
+
+  return data;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ENVIO DO FORMULÁRIO
+// ═══════════════════════════════════════════════════════════════
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  if (!validateForm()) return;
+
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Enviando...';
+
+  const data = collectFormData();
+
+  try {
+    if (SUPABASE_URL && SUPABASE_KEY) {
+      // Envio para Supabase via API REST
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Supabase error:', response.status, errorText);
+        throw new Error(`Erro ao enviar (${response.status})`);
+      }
+    } else {
+      // Modo teste: apenas loga no console
+      console.log('Dados do formulário (modo teste, configurar SUPABASE_URL e SUPABASE_KEY):', data);
+      await new Promise(r => setTimeout(r, 600));
+    }
+
+    // Mostra tela de sucesso
+    document.getElementById('formHeader').style.display = 'none';
+    document.getElementById('progressWrapper').style.display = 'none';
+    form.style.display = 'none';
+    document.getElementById('successName').textContent = data.nome.split(' ')[0];
+    document.getElementById('successScreen').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  } catch (error) {
+    console.error('Erro no envio:', error);
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Enviar candidatura';
+    alert('Ocorreu um erro ao enviar sua candidatura. Por favor, tente novamente ou entre em contato pelo Instagram @arrudaandreia.');
+  }
+});
+
+// Inicializa progresso
+updateProgress();
+</script>
+
+</body>
+</html>
