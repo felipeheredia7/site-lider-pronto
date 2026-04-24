@@ -1196,13 +1196,10 @@ form.addEventListener('submit', async function(e) {
       await new Promise(r => setTimeout(r, 600));
     }
 
-    // Mostra tela de sucesso
-    document.getElementById('formHeader').style.display = 'none';
-    document.getElementById('progressWrapper').style.display = 'none';
-    form.style.display = 'none';
-    document.getElementById('successName').textContent = data.nome.split(' ')[0];
-    document.getElementById('successScreen').classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Redireciona para a página de obrigado
+    // O nome vai via querystring pra personalizar lá (opcional)
+    const firstName = encodeURIComponent(data.nome.split(' ')[0]);
+    window.location.href = `obrigado.html?nome=${firstName}`;
 
   } catch (error) {
     console.error('Erro no envio:', error);
