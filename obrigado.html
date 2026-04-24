@@ -6,6 +6,13 @@
 <title>Candidatura recebida · Líder Pronto · Andreia Arruda</title>
 <meta name="description" content="Recebi sua candidatura. Em até 24h entro em contato pessoalmente pelo WhatsApp. Enquanto isso, baixe o ebook Comunicação Sem Ruído.">
 
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+<link rel="manifest" href="/favicon/site.webmanifest">
+<meta name="theme-color" content="#9B4A2E">
 <!-- Open Graph -->
 <meta property="og:title" content="Candidatura recebida · Líder Pronto">
 <meta property="og:description" content="Recebi sua candidatura. Baixe o ebook Comunicação Sem Ruído enquanto nossa conversa é preparada.">
@@ -82,9 +89,21 @@ h1, h2, h3 {
   font-size: 18px;
   font-weight: 700;
   color: var(--terracota);
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .brand span { color: var(--mute); font-weight: 400; font-style: italic; font-size: 14px; }
+
+.brand-logo {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
+.brand-text-only { display: inline; }
+.brand.has-logo .brand-text-only { display: none; }
 
 .topbar-home {
   font-size: 13px;
@@ -644,7 +663,10 @@ footer .brand-small {
   <!-- TOP BAR -->
   <div class="topbar">
     <div class="topbar-inner">
-      <div class="brand">Gente &amp; Gestão <span>· por Andreia Arruda</span></div>
+      <div class="brand has-logo">
+        <img src="/logo.png" alt="Gente &amp; Gestão · por Andreia Arruda" class="brand-logo">
+        <span class="brand-text-only">Gente &amp; Gestão <span>· por Andreia Arruda</span></span>
+      </div>
       <a href="/" class="topbar-home">← Página inicial</a>
     </div>
   </div>
