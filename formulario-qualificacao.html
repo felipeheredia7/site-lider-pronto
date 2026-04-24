@@ -6,6 +6,13 @@
 <title>Candidatar-se ao Líder Pronto · Andreia Arruda</title>
 <meta name="description" content="Formulário de candidatura para a próxima turma da mentoria Líder Pronto. Preenchimento rápido, atendimento pessoal em até 24h.">
 
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+<link rel="manifest" href="/favicon/site.webmanifest">
+<meta name="theme-color" content="#9B4A2E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -77,9 +84,21 @@ h1, h2, h3 {
   font-size: 18px;
   font-weight: 700;
   color: var(--terracota);
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .brand span { color: var(--mute); font-weight: 400; font-style: italic; font-size: 14px; }
+
+.brand-logo {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
+.brand-text-only { display: inline; }
+.brand.has-logo .brand-text-only { display: none; }
 
 .topbar-back {
   font-size: 13px;
@@ -572,7 +591,10 @@ footer .brand-small {
   <!-- TOP BAR -->
   <div class="topbar">
     <div class="topbar-inner">
-      <div class="brand">Gente &amp; Gestão <span>· por Andreia Arruda</span></div>
+      <div class="brand has-logo">
+        <img src="/logo.png" alt="Gente &amp; Gestão · por Andreia Arruda" class="brand-logo">
+        <span class="brand-text-only">Gente &amp; Gestão <span>· por Andreia Arruda</span></span>
+      </div>
       <a href="#" class="topbar-back" onclick="history.back(); return false;">← Voltar</a>
     </div>
   </div>
