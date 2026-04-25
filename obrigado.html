@@ -70,7 +70,7 @@ h1, h2, h3 {
    TOP BAR
    ═══════════════════════════════════════════════════════════════ */
 .topbar {
-  padding: 20px 0;
+  padding: 12px 0;
   border-bottom: 1px solid rgba(42, 32, 24, 0.08);
   background: var(--off-white);
 }
@@ -97,8 +97,9 @@ h1, h2, h3 {
 .brand span { color: var(--mute); font-weight: 400; font-style: italic; font-size: 14px; }
 
 .brand-logo {
-  height: 32px;
-  width: auto;
+  width: 360px;
+  height: auto;
+  max-width: 100%;
   display: block;
 }
 
@@ -110,9 +111,22 @@ h1, h2, h3 {
   color: var(--mute);
   text-decoration: none;
   transition: color 0.2s;
+  white-space: nowrap;
+  margin-left: 16px;
 }
 
 .topbar-home:hover { color: var(--terracota); }
+
+@media (max-width: 768px) {
+  .brand-logo { width: 260px; }
+}
+@media (max-width: 640px) {
+  .brand-logo { width: 220px; }
+}
+@media (max-width: 380px) {
+  .brand-logo { width: 180px; }
+  .topbar-home { font-size: 12px; }
+}
 
 /* ═══════════════════════════════════════════════════════════════
    HERO DE CONFIRMAÇÃO
@@ -728,14 +742,6 @@ footer .brand-small {
           <li>O Glossário do Líder: 12 reformulações que mudam o jogo</li>
         </ul>
 
-        <!--
-        ═══════════════════════════════════════════════════════════════
-        IMPORTANTE: substitua o href abaixo pelo link real do ebook.
-        Opções: link direto do arquivo PDF no GitHub, Google Drive
-        (com compartilhamento público) ou outro hospedeiro.
-        Exemplo Drive: https://drive.google.com/uc?export=download&id=FILE_ID
-        ═══════════════════════════════════════════════════════════════
-        -->
         <a href="Comunicacao_Sem_Ruido_-_Gente_e_Gestao.pdf"
            class="btn-download"
            download
@@ -812,27 +818,21 @@ footer .brand-small {
 // ═══════════════════════════════════════════════════════════════
 // PERSONALIZAÇÃO COM O NOME DO LEAD
 // ═══════════════════════════════════════════════════════════════
-// Lê o parâmetro ?nome= da URL enviado pelo formulário
-// e personaliza o conteúdo da página.
-
 (function() {
   const params = new URLSearchParams(window.location.search);
   const rawName = params.get('nome');
 
-  if (!rawName) return; // sem nome? mantém versão padrão
+  if (!rawName) return;
 
-  // Sanitiza: remove caracteres suspeitos, limita tamanho, capitaliza
   const cleanName = rawName
-    .replace(/[<>"/\\{}[\]]/g, '')  // remove símbolos que não fazem sentido em nome
+    .replace(/[<>"/\\{}[\]]/g, '')
     .trim()
-    .slice(0, 40);                   // limita tamanho
+    .slice(0, 40);
 
   if (cleanName.length < 2) return;
 
-  // Capitaliza primeira letra (caso venha minúsculo)
   const firstName = cleanName.charAt(0).toUpperCase() + cleanName.slice(1).toLowerCase();
 
-  // 1. Exibe saudação acima do checkmark
   const greetingEl = document.getElementById('greeting');
   const greetingNameEl = document.getElementById('greetingName');
   if (greetingEl && greetingNameEl) {
@@ -840,19 +840,16 @@ footer .brand-small {
     greetingEl.style.display = 'block';
   }
 
-  // 2. Personaliza o subtítulo do hero
   const subtitleEl = document.getElementById('subtitleText');
   if (subtitleEl) {
     subtitleEl.textContent = `Em até 24 horas eu mesma entro em contato com você pelo WhatsApp, ${firstName}. Enquanto isso, deixei algo com você abaixo.`;
   }
 
-  // 3. Personaliza o eyebrow do ebook
   const ebookEyebrowEl = document.getElementById('ebookEyebrow');
   if (ebookEyebrowEl) {
     ebookEyebrowEl.textContent = `Um presente para você, ${firstName}`;
   }
 
-  // 4. Personaliza o título da aba (aparece no topo do navegador)
   document.title = `Obrigada, ${firstName}! · Líder Pronto`;
 })();
 </script>
