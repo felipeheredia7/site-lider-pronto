@@ -137,7 +137,7 @@ a { color: inherit; text-decoration: none; }
    TOP BAR
    ═══════════════════════════════════════════════════════════════ */
 .topbar {
-  padding: 20px 0;
+  padding: 14px 0;
   border-bottom: 1px solid rgba(42, 32, 24, 0.08);
   background: var(--off-white);
   position: sticky;
@@ -165,8 +165,9 @@ a { color: inherit; text-decoration: none; }
 .brand span { color: var(--mute); font-weight: 400; font-style: italic; }
 
 .brand-logo {
-  height: 36px;
-  width: auto;
+  width: 240px;
+  height: auto;
+  max-width: 100%;
   display: block;
 }
 
@@ -189,7 +190,7 @@ a { color: inherit; text-decoration: none; }
 .topbar-cta:hover { background: var(--terracota); color: var(--creme); }
 @media (max-width: 640px) {
   .topbar-cta { display: none; }
-  .brand-logo { height: 30px; }
+  .brand-logo { width: 180px; }
 }
 /* ═══════════════════════════════════════════════════════════════
    HERO
