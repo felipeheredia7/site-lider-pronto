@@ -65,7 +65,7 @@ h1, h2, h3 {
 }
 
 .topbar {
-  padding: 20px 0;
+  padding: 12px 0;
   border-bottom: 1px solid rgba(42, 32, 24, 0.08);
   background: var(--off-white);
 }
@@ -92,8 +92,9 @@ h1, h2, h3 {
 .brand span { color: var(--mute); font-weight: 400; font-style: italic; font-size: 14px; }
 
 .brand-logo {
-  height: 32px;
-  width: auto;
+  width: 360px;
+  height: auto;
+  max-width: 100%;
   display: block;
 }
 
@@ -105,9 +106,22 @@ h1, h2, h3 {
   color: var(--mute);
   text-decoration: none;
   transition: color 0.2s;
+  white-space: nowrap;
+  margin-left: 16px;
 }
 
 .topbar-back:hover { color: var(--terracota); }
+
+@media (max-width: 768px) {
+  .brand-logo { width: 260px; }
+}
+@media (max-width: 640px) {
+  .brand-logo { width: 220px; }
+}
+@media (max-width: 380px) {
+  .brand-logo { width: 180px; }
+  .topbar-back { font-size: 12px; }
+}
 
 .main-content {
   flex: 1;
@@ -964,15 +978,6 @@ footer .brand-small {
 // ═══════════════════════════════════════════════════════════════
 // CONFIGURAÇÃO SUPABASE
 // ═══════════════════════════════════════════════════════════════
-// Cole aqui as duas informações do seu projeto Supabase.
-// Como encontrar: Dashboard Supabase → Settings → Data API
-//
-// 1. SUPABASE_URL: algo como https://abcdefgh.supabase.co
-// 2. SUPABASE_KEY: a chave publishable (publishable/anon). NÃO use a secret.
-//
-// Nome da tabela: por padrão, o formulário insere em "leads".
-// Você cria essa tabela no passo do guia de configuração.
-
 const SUPABASE_URL = 'https://slzsgtbgyubpjhwqcttr.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNsenNndGJneXVicGpod3FjdHRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwNTAwNjUsImV4cCI6MjA5MjYyNjA2NX0.TpGjL34K1wLAC0F4uXjbaq5A3Qitf_0f191U4bs3wGs';
 const SUPABASE_TABLE = 'leads';
@@ -1018,20 +1023,16 @@ const progressText = document.getElementById('progressText');
 function updateProgress() {
   let completed = 0;
 
-  // Texto/email/tel
   if (document.getElementById('nome').value.trim()) completed++;
   if (document.getElementById('whatsapp').value.trim().length >= 14) completed++;
   if (document.getElementById('email').value.trim() && document.getElementById('email').value.includes('@')) completed++;
 
-  // Radios
   ['situacao', 'tamanho_equipe', 'urgencia', 'porte_empresa', 'investimento'].forEach(name => {
     if (document.querySelector(`input[name="${name}"]:checked`)) completed++;
   });
 
-  // Checkbox (pelo menos 1)
   if (document.querySelectorAll('input[name="desafios"]:checked').length > 0) completed++;
 
-  // Textarea
   if (document.getElementById('situacao_dificil').value.trim().length >= 20) completed++;
 
   const percent = (completed / 10) * 100;
@@ -1061,20 +1062,16 @@ function validateForm() {
   let isValid = true;
   let firstErrorGroup = null;
 
-  // 1. Nome
   const nome = document.getElementById('nome').value.trim();
   if (nome.length < 3) { showError(1); if (!firstErrorGroup) firstErrorGroup = 1; isValid = false; }
 
-  // 2. WhatsApp
   const whats = document.getElementById('whatsapp').value.replace(/\D/g, '');
   if (whats.length < 10 || whats.length > 11) { showError(2); if (!firstErrorGroup) firstErrorGroup = 2; isValid = false; }
 
-  // 3. Email
   const email = document.getElementById('email').value.trim();
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) { showError(3); if (!firstErrorGroup) firstErrorGroup = 3; isValid = false; }
 
-  // 4-5, 7-9 Radios obrigatórios
   const radioFields = [
     { name: 'situacao', q: 4 },
     { name: 'tamanho_equipe', q: 5 },
@@ -1091,18 +1088,15 @@ function validateForm() {
     }
   });
 
-  // 6. Desafios (pelo menos 1)
   if (document.querySelectorAll('input[name="desafios"]:checked').length === 0) {
     showError(6);
     if (!firstErrorGroup) firstErrorGroup = 6;
     isValid = false;
   }
 
-  // 10. Situação difícil (mínimo 20 caracteres)
   const sit = document.getElementById('situacao_dificil').value.trim();
   if (sit.length < 20) { showError(10); if (!firstErrorGroup) firstErrorGroup = 10; isValid = false; }
 
-  // Scroll para o primeiro erro
   if (firstErrorGroup) {
     const errorEl = document.querySelector(`.question-group[data-question="${firstErrorGroup}"]`);
     if (errorEl) {
@@ -1132,7 +1126,6 @@ function collectFormData() {
     origem: window.location.href
   };
 
-  // Labels humanos para facilitar leitura no destino
   const labels = {
     situacao: {
       'dono': 'Dono(a) de empresa',
@@ -1195,7 +1188,6 @@ form.addEventListener('submit', async function(e) {
 
   try {
     if (SUPABASE_URL && SUPABASE_KEY) {
-      // Envio para Supabase via API REST
       const response = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}`, {
         method: 'POST',
         headers: {
@@ -1213,13 +1205,10 @@ form.addEventListener('submit', async function(e) {
         throw new Error(`Erro ao enviar (${response.status})`);
       }
     } else {
-      // Modo teste: apenas loga no console
       console.log('Dados do formulário (modo teste, configurar SUPABASE_URL e SUPABASE_KEY):', data);
       await new Promise(r => setTimeout(r, 600));
     }
 
-    // Redireciona para a página de obrigado
-    // O nome vai via querystring pra personalizar lá (opcional)
     const firstName = encodeURIComponent(data.nome.split(' ')[0]);
     window.location.href = `obrigado.html?nome=${firstName}`;
 
@@ -1231,7 +1220,6 @@ form.addEventListener('submit', async function(e) {
   }
 });
 
-// Inicializa progresso
 updateProgress();
 </script>
 
